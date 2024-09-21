@@ -1,0 +1,22 @@
+services:
+  mariadb:
+    image: mariadb:11.5.2
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Abra1290-  # Cambia esta contraseña a tu preferencia
+      MYSQL_DATABASE: capturas         # Nombre de la base de datos inicial
+      MYSQL_USER: remoUser             # Usuario personalizado
+      MYSQL_PASSWORD: Abra1290-       # Contraseña del usuario personalizado
+    volumes:
+      - mariadb_data:/var/lib/mysql    # Volumen persistente para los datos
+    restart: unless-stopped
+
+volumes:
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ~/docker/data  # Cambia esta ruta al lugar donde deseas guardar los datos
